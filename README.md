@@ -64,7 +64,7 @@ Testing, demonstration, learning and POC. Witnessing the AWESOME power of Docker
       * Start the cluster by selecting it from the list and hit `Start`
     ![](images/9.png)
       * Wait for the 2 application server JVMs to load. You can check their status in 
-    `Servers >> Server Types >> WebSphere application servers`
+    `Servers >> Server Types >> WebSphere application servers`. The column **Host Name** is the container id.
     ![](images/10.png)
 
 ## To Do:
