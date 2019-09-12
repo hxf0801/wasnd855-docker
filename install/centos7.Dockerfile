@@ -47,7 +47,7 @@ RUN  mkdir /tmp/was \
     -preferences com.ibm.cic.common.core.preferences.preserveDownloadedArtifacts=false \
     && rm -rf /tmp/was
 
-###### Install IBM WebSphere Application Server ND Fixpack v8559 ################
+###### Install IBM WebSphere Application Server ND Fixpack v85510 ################
 COPY --chown=$user:$group 8.5.5-WS-WAS-FP0000010-part1.zip /tmp/wasfp1.zip
 COPY --chown=$user:$group 8.5.5-WS-WAS-FP0000010-part2.zip /tmp/wasfp2.zip
 RUN  mkdir /tmp/wasfp \
