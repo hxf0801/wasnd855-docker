@@ -1,6 +1,10 @@
 # Websphere Application Server Network Deployment 8.5.5.x 2-Node Cluster on Docker
 
-Referrence to [Amir Barkal's Websphere Application Server Network Deployment 2-Node Cluster on Docker](https://github.com/amirbarkal/websphere-nd-docker.git) and [IBM official Dockerfiles for WebSphere Application Server traditional](https://github.com/WASdev/ci.docker.websphere-traditional)
+The project elaborates how to create WebSphere Application Server base image from scratch and utilize it to create default profile or cluster. It requires user must first download WebSphere installation files to local system.
+
+Referrences:
+1. [Amir Barkal's Websphere Application Server Network Deployment 2-Node Cluster on Docker](https://github.com/amirbarkal/websphere-nd-docker.git) 
+2. [IBM official Dockerfiles for WebSphere Application Server traditional](https://github.com/WASdev/ci.docker.websphere-traditional)
 
 ======================================================================================================
 ## What is this?
@@ -24,7 +28,7 @@ Testing, demonstration, learning and POC. Witnessing the AWESOME power of Docker
 ## How do I run it?
 1. Clone this repo `https://github.com/hxf0801/wasnd855-docker.git`
 2. Change to the repo dir `cd wasnd855-docker`
-3. Go to Directory `install` to build an WebSphere Application Server Network Deployment traditional Docker image. And then go back here. 
+3. Go to Directory `install` to build an bare WebSphere Application Server Network Deployment traditional Docker image. And then go back here. 
     > Refer to [the detailed steps](README_StepByStep.md) to find out more on **_`Build an IBM WebSphere Application Server Network Deployment traditional image`_**.
 4. Execute `docker-compose up -d`.
     > Refer to [the detailed steps](README_StepByStep.md) for **_Build an IBM WebSphere Application Server Network Deployment traditional deployment manager image_** and **_Build an IBM WebSphere Application Server Network Deployment traditional custom node image_**.
@@ -67,7 +71,9 @@ Testing, demonstration, learning and POC. Witnessing the AWESOME power of Docker
     `Servers >> Server Types >> WebSphere application servers`. The column **Host Name** is the container id.
     ![](images/10.png)
 
+## Automatically create profile and start server once container created:
+Directory `samples` provide how to utilize the above bare WebSphere image to install and configure applications.
+
 ## To Do:
-* Automate install application and setup env when creating custom node
 * Automate cluster creation upon cell initialization
 
