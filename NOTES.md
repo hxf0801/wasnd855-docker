@@ -147,6 +147,25 @@ For emphasis, *mycontainer* is a __container ID__, not an image ID.
     docker cp mycontainer:/src/. target
 ```
 
+# how to copy docker volume to local
+
+> To copy data from the volume to the host, use a temporary container that has the volume mounted.
+```bash
+CID=$(docker run -d -v hello:/hello busybox true)
+docker cp $CID:/hello ./
+```
+
+> To copy a directory from the host to volume
+```bash
+cd local_dir
+docker cp . $CID:/hello/
+```
+
+> Then clean up the temporary container.
+```bash
+docker rm $CID
+```
+
 # how to explore a file system of a docker build
 
 Everytime docker successfully executes a RUN command from a Dockerfile, a new layer in the image filesystem is committed. Conveniently you can use those layers ids as images to start a new container.
