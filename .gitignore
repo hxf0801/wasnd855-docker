@@ -1,2 +1,5 @@
 *.zip
 *.ear
+*.tar
+citisit
+ci.docker.websphere-traditional
