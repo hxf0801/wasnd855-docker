@@ -17,7 +17,7 @@ docker build -t wasbase . \
 --build-arg ADMIN_USER_NAME=wasadmin \
 --build-arg ADMIN_USER_PWD=Broadway32
 ```
-Note to remember the admin user **`wasadmin`** and its password **`Broadway32`** which is required to log on the administrative console.
+Note to remember the admin user **`wasadmin`** and its password **`Broadway32`** which is required to log in the administrative console.
 
 > To build with default values. Default user and password is **`wsadmin`** and **`changeme`**, you can change it with build argument `--build-arg ADMIN_USER_NAME=wasadmin --build-arg ADMIN_USER_PWD=Broadway32`:
 ```bash
