@@ -11,15 +11,15 @@ So first, create a base image which extends the result from `Dockerfile` under f
 ```bash
 docker build -t wasbase . \
 --build-arg PROFILE_NAME=AppSrv01 \
---build-arg SERVER_NAME=CITISIT \
---build-arg CELL_NAME=PTSit1Cell01 \
---build-arg NODE_NAME=PTSit1Node01 \
+--build-arg SERVER_NAME=server1 \
+--build-arg CELL_NAME=DefaultCell01 \
+--build-arg NODE_NAME=DefaultNode01 \
 --build-arg ADMIN_USER_NAME=wasadmin \
 --build-arg ADMIN_USER_PWD=Broadway32
 ```
 Note to remember the admin user **wasadmin** and its password **Broadway32** which is required to log on the administrative console.
 
-> To build with default values:
+> To build with default values. default password is **changeme**, you can change it with build argument `--build-arg ADMIN_USER_PWD=Broadway32`:
 ```bash
 docker build -t wasbase . 
 ```
@@ -27,8 +27,8 @@ docker build -t wasbase .
 > To run the base image
 ```bash
 docker run --name test -h test -e UPDATE_HOSTNAME=true \
-  -e PROFILE_NAME=AppSrv01 -e CELL_NAME=PTSit1Cell01 \
-  -e NODE_NAME=PTSit1Node01 -e SERVER_NAME=CITISIT \
+  -e PROFILE_NAME=AppSrv01 -e CELL_NAME=DefaultCell01 \
+  -e NODE_NAME=DefaultNode01 -e SERVER_NAME=server1 \
   -e ADMIN_USER_NAME=wasadmin \
   -p 9043:9043 -p 9443:9443 -p 9060:9060 -p 9080:9080 -d wasbase 
 ``` 
