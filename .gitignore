@@ -3,3 +3,4 @@
 *.tar
 citisit
 ci.docker.websphere-traditional
+ci.docker.ibm-http-server
