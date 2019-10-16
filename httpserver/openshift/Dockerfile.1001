@@ -1,0 +1,35 @@
+# IBM Http Server OpenShift image with webserver definition created
+# see https://github.com/hxf0801/wasnd855-docker/blob/258321f7b8976ec57bcef33bd2cc14ffce3facc1/httpserver/README.md
+FROM ihs
+
+#Users: default(uid=1001), root(uid=0). Both are in root group(gid=0)
+##openshift container runs image using Arbitrary User ID (1001) which is a member of root group
+COPY plugin-cfg.template /opt/IBM/WebSphere/Plugins/config/webserver1/
+COPY ihsstart_openshift.sh /work/
+
+RUN useradd -u 1001 -r -g 0 -s /sbin/nologin -c "Default Application User" default \
+    && setcap CAP_NET_BIND_SERVICE+ep /opt/IBM/HTTPServer/bin/httpd \
+    && chown 1001:0 /opt/IBM/HTTPServer/logs \
+    && chown 1001:0 /opt/IBM/HTTPServer/logs/* \
+    && chown 1001:0 /opt/IBM/WebSphere/Plugins/config/webserver1/plugin-key.* \
+    && chown 1001:0 /opt/IBM/WebSphere/Plugins/logs/webserver1 \
+    && chown 1001:0 /opt/IBM/WebSphere/Plugins/logs/webserver1/* \
+    && chown -R 1001:0 /work \
+    && mv /opt/IBM/WebSphere/Plugins/config/webserver1/plugin-cfg.xml /opt/IBM/WebSphere/Plugins/config/webserver1/plugin-cfg.xml.bak \
+    && cp -v /opt/IBM/WebSphere/Plugins/config/webserver1/plugin-cfg.template /opt/IBM/WebSphere/Plugins/config/webserver1/plugin-cfg.xml \
+    && cd /etc/ld.so.conf.d/ \
+    && echo /opt/IBM/HTTPServer/lib > httpd-lib.conf \
+    && echo /opt/IBM/HTTPServer/gsk8/lib64 >> httpd-lib.conf \
+    && mv /etc/ld.so.cache /etc/ld.so.cache.old \
+    && /sbin/ldconfig
+
+#openshift image only uses numeric user id, not user name
+USER 1001
+
+#ports the container listens. 
+##EXPOSE just opens port on containter to communicate inter-container, and does NOT let them accessible to host
+##Must use 'docker run -p hostPort:containerPort imageName' to expose port to host
+EXPOSE 80
+
+# TODO: Set the default CMD for the image
+CMD ["/work/ihsstart_openshift.sh"]
