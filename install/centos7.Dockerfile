@@ -1,3 +1,5 @@
+# Usage: docker build -t wasnd855:centos7 -f centos7.Dockerfile .
+
 FROM centos:7.6.1810 as intermediate
 
 #RUN echo $https_proxy

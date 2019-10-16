@@ -1,3 +1,5 @@
+# Usage: docker build -t wasbase .
+
 FROM wasnd855:centos7 as builder
 
 RUN echo $PATH
