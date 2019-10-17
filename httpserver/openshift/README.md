@@ -1,6 +1,6 @@
-# IBM HTTP Server image ready for OpenShift
+# IBM HTTP Server image for OpenShift
 
-Before this task, we should have one workable `plugin-cfg.xml`. But in OpenShift, the was server host name is dynamic, by default it is the container id. So the was host should be parameterized, and provided via environment variable `WAS_HOST_NAME` in DeploymentConfig.
+Before this task, we should have one workable `plugin-cfg.xml`. But in OpenShift, the was server host name is dynamic, by default it is the container name (AKA pod name). So the was host should be parameterized, and provided via environment variable `WAS_HOST_NAME` in DeploymentConfig.
 
 ## Dockerfile
 
