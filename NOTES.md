@@ -1,29 +1,47 @@
-# basic operations
+# change Docker machine location on windows7
+By default, the docker machine creates its VM at `C:\Users\username\.docker\machine\machines\default`. Since there is limited disk space on the C drive, so we move the folder as desired.
+
+1. Setup the MACHINE_STORAGE_PATH environment variable as the root of the location you want to use for the Docker machines/VMs, cache, etc. 
+
+```shell
+MACHINE_STORAGE_PATH=d:\ws-docker-env
 ```
+
+2. Install Docker Toolbox.
+
+3. Run Docker Quickstart Terminal.
+
+Docker Toolbox will now create all the files at the location pointed at by MACHINE_STORAGE_PATH.
+
+
+
+# basic operations
+```shell
 $ docker-machine ls
 $ docker-machine start default
 $ docker-machine env
 $ eval $(docker-machine env)
+$ docker-machine stop default
 
 $ docker volume ls
 $ docker network ls
 $ docker network prune
 $ docker network --help
-```
 
-# creating a docker VM with specified disk size
-
-delte old VM and create a new one:
-```
+# delte VM
 $ docker-machine rm default
-$ docker-machine create -d virtualbox --virtualbox-memory "4096" --virtualbox-disk-size "40000" default
+
+# creating a docker VM 'default' with specified disk size
+$ docker-machine create -d virtualbox --virtualbox-memory "8192" --virtualbox-disk-size "100000" default
 ```
 
 If running into the below error when running docker command:
-```
+```shell
 error during connect: Post https://192.168.99.102:2376/v1.37/build?buildargs=%7B%22HTTPS_PROXY%22%3A%22http%3A%2F%2Farchive.ubuntu.com%2Fubuntu%2F%22%2C%22HTTP_PROXY%22%3A%22http%3A%2F%2Farchive.ubuntu.com%2Fubuntu%2F%22%2C%22NO_PROXY%22%3A%22127.0.0.1%2Clocalhost%22%2C%22http_proxy%22%3A%22http%3A%2F%2Farchive.ubuntu.com%2Fubuntu%2F%22%2C%22https_proxy%22%3A%22http%3A%2F%2Farchive.ubuntu.com%2Fubuntu%2F%22%2C%22no_proxy%22%3A%22127.0.0.1%2Clocalhost%22%7D&cachefrom=%5B%5D&cgroupparent=&cpuperiod=0&cpuquota=0&cpusetcpus=&cpusetmems=&cpushares=0&dockerfile=Dockerfile.prereq&labels=%7B%7D&memory=0&memswap=0&networkmode=default&rm=1&session=13f0f5efb1e0e3976a179b0c056b09abf2bf6bfc381e60183319398589697491&shmsize=0&t=was8559_ubuntu1804&target=&ulimits=null: dial tcp 192.168.99.102:2376: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
 ```
 then run ```eval $(docker-machine env)``` to configure your shell
+
+
 
 # correct docker run command in windows
 

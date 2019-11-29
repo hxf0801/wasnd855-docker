@@ -44,8 +44,10 @@ $ docker cp ihs:/opt/IBM/WebSphere/Plugins/config /d/tmp/x/openshift/ihs/
 Enter in browser: http://192.168.99.105/cda
 
 
-## ?? Summary This technical document provides details on how to setup IBM HTTP Server (IHS) to run as non-root user.
-Create a new user called ihsadmin1 and configure IHS to run as a user ihsadmin1 using setcap:
+## How to setup IBM HTTP Server (IHS) to run as non-root user
+Generally the IHS image is ran by root user, shown as the above. But some cases don't permit use the root user to run any application. So this section provides details on How to setup IBM HTTP Server to run as non-root user. 
+
+Create a new user called `ihsadmin1` and configure IHS to run as a user `ihsadmin1` using setcap:
 
 1. As root, stop IHS:
     /opt/IBM/HTTPServer/bin/apachectl stop
